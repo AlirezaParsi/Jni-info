@@ -23,7 +23,7 @@ jobs:
           export PATH=$PWD/gradle-8.1.4/bin:$PATH
           gradle --version
 
-      - name: Debug: List directory structure before
+      - name: Debug
         run: ls -R
 
       - name: Generate Gradle Wrapper
@@ -32,7 +32,7 @@ jobs:
           chmod +x ./gradlew
           ls -l ./gradlew gradlew.bat gradle/wrapper/
 
-      - name: Debug: List directory structure after
+      - name: Debug List directory structure after
         run: ls -R
 
       - name: Commit Gradle Wrapper files
