@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
+    namespace 'com.example.copg'
     compileSdkVersion 34
 
     defaultConfig {
