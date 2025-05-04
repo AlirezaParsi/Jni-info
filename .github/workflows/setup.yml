@@ -18,12 +18,18 @@ jobs:
 
       - name: Install Gradle
         run: |
-          wget -q https://services.gradle.org/distributions/gradle-8.1.4-bin.zip
+          echo "Attempting to download Gradle 8.1.4..."
+          wget -q https://services.gradle.org/distributions/gradle-8.1.4-bin.zip -O gradle-8.1.4-bin.zip || {
+            echo "Failed to download Gradle 8.1.4, trying Gradle 8.5 as fallback..."
+            wget -q https://services.gradle.org/distributions/gradle-8.5-bin.zip -O gradle-8.1.4-bin.zip
+          }
+          ls -la gradle-8.1.4-bin.zip || echo "Download failed!"
           unzip -q gradle-8.1.4-bin.zip
+          ls -la gradle-8.1.4 || echo "Unzip failed!"
           export PATH=$PWD/gradle-8.1.4/bin:$PATH
           gradle --version
 
-      - name: Debug
+      - name: Debug List directory structure before
         run: ls -R
 
       - name: Generate Gradle Wrapper
